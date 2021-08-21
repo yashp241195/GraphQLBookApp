@@ -2,7 +2,8 @@ const express = require('express')
 const morgan  = require('morgan')
 const bodyParser = require('body-parser')
 
-const expressGraphQL = require('express-graphql')
+const { graphqlHTTP } = require('express-graphql');
+
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -140,7 +141,7 @@ const RootQueryType = new GraphQLObjectType({
     mutation: RootMutationType
   })
   
-  app.use('/graphql', expressGraphQL({
+  app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
   }))
