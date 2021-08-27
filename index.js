@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan  = require('morgan')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 
 const { graphqlHTTP } = require('express-graphql');
 
@@ -16,7 +16,6 @@ const {
 const app = express()
 
 app.use(morgan('dev'))
-app.use(bodyParser.json())
 
 app.get('/test',(req,res)=>{
     res.json({test:"testing ..."});
@@ -146,7 +145,7 @@ const RootQueryType = new GraphQLObjectType({
     graphiql: true
   }))
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3005
 
 app.listen(PORT, ()=>{
     console.log("Welcome to GraphQL tutorial");
