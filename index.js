@@ -5,9 +5,12 @@ const { graphqlHTTP } = require('express-graphql');
 
 const {makeExecutableSchema,} = require('@graphql-tools/schema');
 const {mergeResolvers, mergeTypeDefs} = require('@graphql-tools/merge')
+const cors = require('cors')
 
 const app = express()
 
+
+app.use(cors())
 app.use(morgan('dev'))
 
 app.get('/test',(req,res)=>{
@@ -22,11 +25,11 @@ registerResolvers = mergeResolvers([mainRes])
 
 
 app.use('/graphql', graphqlHTTP({
-schema: makeExecutableSchema({
-  typeDefs: registerTypes,//merge array types
-  resolvers: registerResolvers,//merge resolver type
-}),
-graphiql: true
+  schema: makeExecutableSchema({
+    typeDefs: registerTypes,
+    resolvers: registerResolvers,
+  }),
+  graphiql: true
 }))
 
 const PORT = process.env.PORT || 3005

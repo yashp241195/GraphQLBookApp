@@ -14,9 +14,9 @@ const authorResolver = {
         },
     },
     Query: {
-        author: (parent, args) => authors.find(author => author.id === args.id),
+        author: (parent, args) => authors.find(author => author.id === parseInt(args.id)),
         authors: () => authors,
-        book: (parent, args) => books.find(book => book.id === args.id),
+        book: (parent, args) => books.find(book => book.id === parseInt(args.id)),
         books: () => books,
     },
     Mutation:{
